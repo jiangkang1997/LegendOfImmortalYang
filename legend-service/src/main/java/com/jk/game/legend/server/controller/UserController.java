@@ -1,12 +1,13 @@
 package com.jk.game.legend.server.controller;
 
 import com.jk.game.legend.model.User;
-import com.jk.game.legend.server.common.BusinessException;
+import com.jk.game.legend.model.BusinessException;
 import com.jk.game.legend.server.common.RoleCheck;
 import com.jk.game.legend.server.service.UserService;
 import com.jk.game.legend.server.common.HttpResponseBuilder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,15 +18,20 @@ import javax.servlet.http.HttpSession;
 /**
  * @author jk
  */
+//spring mvc框架
 @RestController
 @RequestMapping("/user")
 @Slf4j
 public class UserController {
 
+    /**
+     * spring 框架的作用 单例模式
+     */
     @Resource
     private UserService userService;
 
     @PostMapping("/login")
+    @GetMapping
     public HttpResponseBuilder login(String userName, String password, HttpSession session){
         if(!StringUtils.hasText(userName)  || !StringUtils.hasText(password)){
             return HttpResponseBuilder.builderFail("账号或密码不能为空");

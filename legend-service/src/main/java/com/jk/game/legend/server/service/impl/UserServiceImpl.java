@@ -1,12 +1,13 @@
 package com.jk.game.legend.server.service.impl;
 
 import com.jk.game.legend.model.User;
-import com.jk.game.legend.server.common.BusinessException;
+import com.jk.game.legend.model.BusinessException;
 import com.jk.game.legend.server.mapper.UserMapper;
 import com.jk.game.legend.server.service.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 
 /**
  * @author jk
@@ -15,13 +16,8 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class UserServiceImpl implements UserService {
 
-    private final UserMapper userMapper;
-
-    @Autowired
-    public UserServiceImpl(UserMapper userMapper) {
-        this.userMapper = userMapper;
-    }
-
+    @Resource
+    private UserMapper userMapper;
 
     @Override
     public synchronized void register(String userName, String password) throws BusinessException {

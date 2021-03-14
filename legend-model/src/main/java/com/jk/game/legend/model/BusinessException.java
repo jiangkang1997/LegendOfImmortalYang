@@ -1,4 +1,4 @@
-package com.jk.game.legend.server.common;
+package com.jk.game.legend.model;
 
 /**
  * 自定义业务异常类
