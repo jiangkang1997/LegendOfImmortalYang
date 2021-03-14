@@ -1,4 +1,4 @@
-package com.jk.game.legend.service.controller;
+package com.jk.game.legend.server.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

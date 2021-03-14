@@ -6,6 +6,7 @@
     <modules>
         <module>legend-client</module>
         <module>legend-service</module>
+        <module>legend-model</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -13,13 +14,15 @@
         <version>2.4.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
     <groupId>com.jk.game</groupId>
     <artifactId>legend-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>legend</name>
-    <description>Legend of immortal yang</description>
+
+
     <properties>
         <java.version>1.8</java.version>
+        <legend-model-version>1.0.0</legend-model-version>
     </properties>
 
     <dependencies>
@@ -42,6 +45,7 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
 
 
     <build>
