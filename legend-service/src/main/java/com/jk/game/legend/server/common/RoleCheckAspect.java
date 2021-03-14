@@ -1,5 +1,6 @@
 package com.jk.game.legend.server.common;
 
+import com.jk.game.legend.model.HttpResponseBuilder;
 import com.jk.game.legend.model.User;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;

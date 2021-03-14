@@ -1,11 +1,13 @@
-package com.jk.game.legend.server.common;
+package com.jk.game.legend.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author jk
  */
 @Data
+@NoArgsConstructor
 public class HttpResponseBuilder {
 
     /**

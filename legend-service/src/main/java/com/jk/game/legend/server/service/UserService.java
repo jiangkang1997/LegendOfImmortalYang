@@ -1,7 +1,7 @@
 package com.jk.game.legend.server.service;
 
 import com.jk.game.legend.model.User;
-import com.jk.game.legend.model.BusinessException;
+import com.jk.game.legend.server.common.BusinessException;
 
 /**
  * @author jk

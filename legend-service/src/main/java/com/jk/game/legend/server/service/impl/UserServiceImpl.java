@@ -1,7 +1,7 @@
 package com.jk.game.legend.server.service.impl;
 
 import com.jk.game.legend.model.User;
-import com.jk.game.legend.model.BusinessException;
+import com.jk.game.legend.server.common.BusinessException;
 import com.jk.game.legend.server.mapper.UserMapper;
 import com.jk.game.legend.server.service.UserService;
 import lombok.extern.slf4j.Slf4j;
