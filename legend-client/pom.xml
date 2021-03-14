@@ -15,7 +15,7 @@
         <dependency>
             <groupId>com.jk.game</groupId>
             <artifactId>legend-model</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${legend-model-version}</version>
         </dependency>
     </dependencies>
 
