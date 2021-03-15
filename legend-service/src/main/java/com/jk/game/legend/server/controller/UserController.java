@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
 //spring mvc框架
 @RestController
 @RequestMapping("/user")
+//mybatis框架
 @Slf4j
 public class UserController {
 
