@@ -2,7 +2,7 @@ package com.jk.game.legend.client.frame;
 
 import com.jk.game.legend.client.util.HttpUtil;
 import com.jk.game.legend.model.HttpResponseBuilder;
-import com.jk.game.legend.server.service.impl.UserServiceImpl;
+
 import lombok.SneakyThrows;
 
 import javax.swing.*;
@@ -25,9 +25,9 @@ public class MainFrame extends JFrame {
 
         JLabel label = new JLabel();
         add(label);
-        label.setBounds(250,200,1000,100);
+        label.setBounds(500,200,1000,100);
         label.setFont(new Font("Default", Font.BOLD,100));
-        label.setText("欢迎来到阳阳仙侠传");
+        label.setText("阳阳仙侠传");
 
         JTextField idTxt=new JTextField();
         JPasswordField passwordTxt=new JPasswordField();
@@ -48,9 +48,16 @@ public class MainFrame extends JFrame {
         registerButton.setBounds(600,500,100,30);
         add(registerButton);
         add(startButton);
+
+
         registerButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                if (idTxt.getText().length()>8){
+                    JOptionPane.showMessageDialog(null, "您输入的账号不合法，长度必须<=8");
+                }else if (passwordTxt.getText().length()>20){
+                    JOptionPane.showMessageDialog(null, "您输入的密码不合法，长度必须<=20");
+                }
                 HttpResponseBuilder response = HttpUtil.register(idTxt.getText(),passwordTxt.getText());
                 if (response.getCode()==0){
                     JOptionPane.showMessageDialog(null, "注册成功");
@@ -62,9 +69,20 @@ public class MainFrame extends JFrame {
         startButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                if (idTxt.getText().length()>8){
+                    JOptionPane.showMessageDialog(null, "您输入的账号不合法，长度必须<=8");
+                }else if (passwordTxt.getText().length()>20){
+                    JOptionPane.showMessageDialog(null, "您输入的密码不合法，长度必须<=20");
+                }
                 HttpResponseBuilder response = HttpUtil.login(idTxt.getText(),passwordTxt.getText());
                 if (response.getCode()==0){
                     JOptionPane.showMessageDialog(null, "登录成功");
+                    setVisible(false);
+                    JFrame mainFrame = new JFrame();
+                    mainFrame.setBounds(100,100,1500,750);
+                    mainFrame.setVisible(true);
+                    mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    setLayout(null);
                 }else if (response.getCode()==-1){
                     JOptionPane.showMessageDialog(null, response.getMessage());
                 }

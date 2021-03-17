@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
 /**
+ * Service就是为了做具体的业务逻辑
+ * Impl为后缀就是实现类
  * @author jk
  */
 @Service

@@ -50,7 +50,7 @@ public class UserController {
         return HttpResponseBuilder.builderSuccess(user);
     }
 
-    @PostMapping("/register")
+        @PostMapping("/register")
     public HttpResponseBuilder register(String userName, String password){
         if(!StringUtils.hasText(userName)  || !StringUtils.hasText(password)){
             return HttpResponseBuilder.builderFail("账号或密码不能为空");
