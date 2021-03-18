@@ -2,6 +2,7 @@ package com.jk.game.legend.client.util;
 
 import com.jk.game.legend.model.HttpResponseBuilder;
 import com.jk.game.legend.model.User;
+import com.jk.game.legend.model.UserInfo;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -17,6 +18,7 @@ public class HttpUtil {
     private static final String CONNECTION = "/test/connection";
     private static final String LOGIN = "/user/login";
     private static final String REGISTER = "/user/register";
+    private static final String GETUSERINFOBYUSERID = "/id/info";
 
     /**
      * 请求后端的注册服务
@@ -49,6 +51,17 @@ public class HttpUtil {
         MultiValueMap<String, String> requestEntity = new LinkedMultiValueMap<>();
         requestEntity.add("userName", userName);
         requestEntity.add("password", password);
+        //第三个参数表示把服务返回的json字符串转换成该类的对象
+        HttpResponseBuilder response = restTemplate.postForObject(url,requestEntity,HttpResponseBuilder.class);
+        return response;
+    }
+
+    public static HttpResponseBuilder getUserInfoByUserId(Integer userId){
+        String url = "http://" + ADDRESS + ":" + PORT + GETUSERINFOBYUSERID;
+        RestTemplate restTemplate = new RestTemplate();
+        //这里就是拼接请求的参数·
+        MultiValueMap<String, String> requestEntity = new LinkedMultiValueMap<>();
+        requestEntity.add("userId", Integer.toString(userId));
         //第三个参数表示把服务返回的json字符串转换成该类的对象
         HttpResponseBuilder response = restTemplate.postForObject(url,requestEntity,HttpResponseBuilder.class);
         return response;

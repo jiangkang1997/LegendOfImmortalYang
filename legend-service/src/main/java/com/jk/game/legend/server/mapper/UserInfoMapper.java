@@ -8,16 +8,24 @@ import org.springframework.stereotype.Component;
 
 /**
  * mapper后缀是为了查数据库
- * UserIdMapper的实现类UserIdMapper.xml文件
+ * UserIdMapper的实现类为UserIdMapper.xml文件
  * @author xiayuyang
  */
 @Mapper
 @Component
 public interface UserInfoMapper {
     /**
-     * 根据用户id查询用户
+     * param注解是为了让数据库里访问到形参userId
+     * 根据用户id在数据库里查询用户
      * @param userId
      * @return
      */
     UserInfo getUserInfoByUserId(@Param("userId") Integer userId);
+
+    /**
+     * 通过Id插入
+     * @param userInfo
+     * @return
+     */
+    void insert(UserInfo userInfo);
 }

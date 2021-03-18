@@ -42,5 +42,4 @@ public interface UserMapper {
      */
     User getByUserId(@Param("userId") Integer userId);
 
-
 }

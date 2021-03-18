@@ -16,6 +16,7 @@ import javax.annotation.Resource;
 @Service
 @Slf4j
 public class UserInfoServiceImpl implements UserInfoService {
+
     @Resource
     private UserInfoMapper userInfoMapper;
 

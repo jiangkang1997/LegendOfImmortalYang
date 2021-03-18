@@ -1,7 +1,9 @@
 package com.jk.game.legend.server.service.impl;
 
 import com.jk.game.legend.model.User;
+import com.jk.game.legend.model.UserInfo;
 import com.jk.game.legend.server.common.BusinessException;
+import com.jk.game.legend.server.mapper.UserInfoMapper;
 import com.jk.game.legend.server.mapper.UserMapper;
 import com.jk.game.legend.server.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +22,8 @@ public class UserServiceImpl implements UserService {
 
     @Resource
     private UserMapper userMapper;
+    @Resource
+    private UserInfoMapper userInfoMapper;
 
     @Override
     public synchronized void register(String userName, String password) throws BusinessException {
@@ -28,6 +32,9 @@ public class UserServiceImpl implements UserService {
         }
         User user = new User(userName,password);
         userMapper.insert(user);
+        UserInfo userInfo = new UserInfo("新用户默认属性");
+        userInfo.setUserId(userMapper.getByUserName(userName).getUserId());
+        userInfoMapper.insert(userInfo);
     }
 
     @Override

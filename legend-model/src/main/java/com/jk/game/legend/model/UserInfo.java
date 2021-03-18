@@ -7,12 +7,11 @@ import org.apache.catalina.User;
 import java.io.Serializable;
 import java.util.Objects;
 
+
 /**
+ * Data：自动生成get，set方法,自动重写toString
+ * NoArgsConstructor：自动生成无参构造
  * @author xiayuyang
- */
-/**
- * Data自动生成get，set方法
- * NoArgsConstructor自动生成无参构造
  */
 @Data
 @NoArgsConstructor
@@ -41,6 +40,13 @@ public class UserInfo implements Serializable {
      *暴击率
      */
     double critical;
+
+    public UserInfo(String s){
+        attack = 5;
+        defensive = 5;
+        health = 5;
+        critical = 0.05;
+    }
 
     public UserInfo(Integer userId){
         this.userId = userId;

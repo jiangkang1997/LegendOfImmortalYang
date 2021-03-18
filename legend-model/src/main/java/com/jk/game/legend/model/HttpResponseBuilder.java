@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
  */
 @Data
 @NoArgsConstructor
-public class HttpResponseBuilder {
+public class    HttpResponseBuilder {
 
     /**
      * 返回码  0：成功  -1：失败

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jk.game.legend.server.mapper.UserInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.jk.game.legend.model.UserInfo">
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="attack" jdbcType="INTEGER" property="attack"/>
+        <result column="defensive" jdbcType="INTEGER" property="defensive"/>
+        <result column="health" jdbcType="INTEGER" property="health"/>
+        <result column="critical" jdbcType="DOUBLE" property="critical"/>
+    </resultMap>
+
+    <select id="getUserInfoByUserId" resultMap="BaseResultMap">
+        SELECT * from user_info
+        where user_id = #{userId}
+    </select>
+
+    <insert id="insert" parameterType="com.jk.game.legend.model.UserInfo">
+        INSERT INTO user_info(user_id,attack,defensive,health,critical
+        )
+        VALUES(#{userId},#{attack},#{defensive},#{health},#{critical}
+        )
+    </insert>
+
+</mapper>
+
