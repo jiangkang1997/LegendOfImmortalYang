@@ -1,9 +1,7 @@
 package com.jk.game.legend.client.frame;
-
-import com.jk.game.legend.client.util.HttpUtil;
+import com.jk.game.legend.client.service.UserService;
+import com.jk.game.legend.client.util.SpringUtil;
 import com.jk.game.legend.model.HttpResponseBuilder;
-
-import lombok.SneakyThrows;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,6 +14,7 @@ import java.awt.event.MouseEvent;
  * @date 2021/3/13 21:17
  */
 public class MainFrame extends JFrame {
+
     public MainFrame(){
         setBounds(100,100,1500,750);
         setTitle("阳阳仙侠传");
@@ -49,16 +48,20 @@ public class MainFrame extends JFrame {
         add(registerButton);
         add(startButton);
 
+        UserService userService = SpringUtil.getBean(UserService.class);
+
 
         registerButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (idTxt.getText().length()>8){
                     JOptionPane.showMessageDialog(null, "您输入的账号不合法，长度必须<=8");
+                    return;
                 }else if (passwordTxt.getText().length()>20){
                     JOptionPane.showMessageDialog(null, "您输入的密码不合法，长度必须<=20");
+                    return;
                 }
-                HttpResponseBuilder response = HttpUtil.register(idTxt.getText(),passwordTxt.getText());
+                HttpResponseBuilder response = userService.register(idTxt.getText(), passwordTxt.getText());
                 if (response.getCode()==0){
                     JOptionPane.showMessageDialog(null, "注册成功");
                 }else if (response.getCode()==-1){
@@ -71,10 +74,12 @@ public class MainFrame extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 if (idTxt.getText().length()>8){
                     JOptionPane.showMessageDialog(null, "您输入的账号不合法，长度必须<=8");
+                    return;
                 }else if (passwordTxt.getText().length()>20){
                     JOptionPane.showMessageDialog(null, "您输入的密码不合法，长度必须<=20");
+                    return;
                 }
-                HttpResponseBuilder response = HttpUtil.login(idTxt.getText(),passwordTxt.getText());
+                HttpResponseBuilder response = userService.login(idTxt.getText(), passwordTxt.getText());
                 if (response.getCode()==0){
                     JOptionPane.showMessageDialog(null, "登录成功");
                     setVisible(false);

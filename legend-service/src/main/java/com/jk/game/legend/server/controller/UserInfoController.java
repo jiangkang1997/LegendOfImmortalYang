@@ -42,7 +42,7 @@ public class UserInfoController {
         }
         UserInfo userInfo;
         try {
-            userInfo = idService.search(userId);
+            userInfo = idService.getUserInfoByUserId(userId);
         }catch (BusinessException e) {
             return HttpResponseBuilder.builderFail(e.getMessage());
         }catch (Exception e){

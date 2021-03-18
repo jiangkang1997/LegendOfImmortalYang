@@ -7,7 +7,6 @@ import com.jk.game.legend.server.service.UserService;
 import com.jk.game.legend.model.HttpResponseBuilder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,8 +30,8 @@ public class UserController {
     @Resource
     private UserService userService;
 
+
     @PostMapping("/login")
-    @GetMapping
     public HttpResponseBuilder login(String userName, String password, HttpSession session){
         if(!StringUtils.hasText(userName)  || !StringUtils.hasText(password)){
             return HttpResponseBuilder.builderFail("账号或密码不能为空");
@@ -50,7 +49,8 @@ public class UserController {
         return HttpResponseBuilder.builderSuccess(user);
     }
 
-        @PostMapping("/register")
+
+    @PostMapping("/register")
     public HttpResponseBuilder register(String userName, String password){
         if(!StringUtils.hasText(userName)  || !StringUtils.hasText(password)){
             return HttpResponseBuilder.builderFail("账号或密码不能为空");
