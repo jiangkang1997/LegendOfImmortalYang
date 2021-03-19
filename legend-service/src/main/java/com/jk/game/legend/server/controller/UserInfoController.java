@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
-
 /**
  * @author xiayuyang
  */
@@ -29,11 +28,11 @@ import javax.annotation.Resource;
 @Slf4j
 public class UserInfoController {
     /**
-     * spring框架：把实现类的对象New出来给idService，下面用的idService实际上用的
-     *            UserInfoServiceImpl的实例化对象而不是UserInfoService接口（单例模式）
+     * spring 框架的作用（把实现类的对象New出来给idService，下面用的idService实际上用的
+     *                  UserInfoServiceImpl） 单例模式
      */
     @Resource
-    private UserInfoService userInfoService;
+    private UserInfoService idService;
 
     @PostMapping("/info")
     @GetMapping
@@ -43,7 +42,7 @@ public class UserInfoController {
         }
         UserInfo userInfo;
         try {
-            userInfo = userInfoService.getUserInfoByUserId(userId);
+            userInfo = idService.getUserInfoByUserId(userId);
         }catch (BusinessException e) {
             return HttpResponseBuilder.builderFail(e.getMessage());
         }catch (Exception e){
