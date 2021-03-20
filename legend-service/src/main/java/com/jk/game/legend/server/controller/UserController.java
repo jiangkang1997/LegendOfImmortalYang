@@ -30,7 +30,6 @@ public class UserController {
     @Resource
     private UserService userService;
 
-
     @PostMapping("/login")
     public HttpResponseBuilder login(String userName, String password, HttpSession session){
         if(!StringUtils.hasText(userName)  || !StringUtils.hasText(password)){
@@ -48,7 +47,6 @@ public class UserController {
         }
         return HttpResponseBuilder.builderSuccess(user);
     }
-
 
     @PostMapping("/register")
     public HttpResponseBuilder register(String userName, String password){
@@ -91,6 +89,5 @@ public class UserController {
             log.error(e.getMessage(),e);
             return HttpResponseBuilder.builderFail("系统错误");
         }
-
     }
 }

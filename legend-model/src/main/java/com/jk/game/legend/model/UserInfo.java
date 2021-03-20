@@ -41,11 +41,11 @@ public class UserInfo implements Serializable {
      */
     double critical;
 
-    public UserInfo(String s){
-        attack = 5;
-        defensive = 5;
-        health = 5;
-        critical = 0.05;
+    public UserInfo(Integer attack,Integer defensive,Integer health,double critical){
+        this.attack = attack;
+        this.defensive = defensive;
+        this.health = health;
+        this.critical = critical;
     }
 
     public UserInfo(Integer userId){

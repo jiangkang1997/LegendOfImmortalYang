@@ -41,7 +41,6 @@ public class HttpUtil {
         return response.getBody();
     }
 
-
     /**
      * 请求后端的注册服务
      * @param userName
