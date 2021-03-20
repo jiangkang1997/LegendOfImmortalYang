@@ -39,13 +39,20 @@ public class UserInfo implements Serializable {
     /**
      *暴击率
      */
-    double critical;
+    Double critical;
+
+    /**
+     * 速度
+     */
+    Integer speed;
+
 
     public UserInfo(String s){
         attack = 5;
         defensive = 5;
         health = 5;
         critical = 0.05;
+        speed = 5;
     }
 
     public UserInfo(Integer userId){
