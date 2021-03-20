@@ -32,7 +32,8 @@ public class UserServiceImpl implements UserService {
         }
         User user = new User(userName,password);
         userMapper.insert(user);
-        UserInfo userInfo = new UserInfo("新用户默认属性");
+        //创建初始化人物，插入到userinfo表
+        UserInfo userInfo = new UserInfo(5,5,5,0.05);
         userInfo.setUserId(userMapper.getByUserName(userName).getUserId());
         userInfoMapper.insert(userInfo);
     }

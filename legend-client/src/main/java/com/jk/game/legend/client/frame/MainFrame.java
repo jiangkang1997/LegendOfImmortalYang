@@ -32,24 +32,23 @@ public class MainFrame extends JFrame {
         JPasswordField passwordTxt=new JPasswordField();
         JLabel idJbutton = new JLabel("账号:");
         JLabel passwordJbutton = new JLabel("密码:");
-        idJbutton.setBounds(600,400,70,25);
-        passwordJbutton.setBounds(600,450,70,25);
-        idTxt.setBounds(670,400,230,25);
-        passwordTxt.setBounds(670,450,230,25);
         add(idJbutton);
         add(passwordJbutton);
         add(idTxt);
         add(passwordTxt);
+        idJbutton.setBounds(600,400,70,25);
+        passwordJbutton.setBounds(600,450,70,25);
+        idTxt.setBounds(670,400,230,25);
+        passwordTxt.setBounds(670,450,230,25);
 
         JButton registerButton = new JButton("注册");
         JButton startButton = new JButton("登录");
-        startButton.setBounds(800,500,100,30);
-        registerButton.setBounds(600,500,100,30);
         add(registerButton);
         add(startButton);
+        startButton.setBounds(800,500,100,30);
+        registerButton.setBounds(600,500,100,30);
 
         UserService userService = SpringUtil.getBean(UserService.class);
-
 
         registerButton.addMouseListener(new MouseAdapter() {
             @Override

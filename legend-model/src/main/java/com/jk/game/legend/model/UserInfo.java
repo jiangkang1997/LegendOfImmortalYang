@@ -2,7 +2,6 @@ package com.jk.game.legend.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.catalina.User;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -47,12 +46,12 @@ public class UserInfo implements Serializable {
     Integer speed;
 
 
-    public UserInfo(String s){
-        attack = 5;
-        defensive = 5;
-        health = 5;
-        critical = 0.05;
-        speed = 5;
+    public UserInfo(Integer attack,Integer defensive,Integer health,double critical,Integer speed){
+        this.attack = attack;
+        this.defensive = defensive;
+        this.health = health;
+        this.critical = critical;
+        this.speed = speed;
     }
 
     public UserInfo(Integer userId){

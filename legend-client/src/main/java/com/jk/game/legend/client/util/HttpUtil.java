@@ -36,4 +36,39 @@ public class HttpUtil {
         return response.getBody();
     }
 
+    /**
+     * 请求后端的注册服务
+     * @param userName
+     * @param password
+     * @return
+     */
+    public static HttpResponseBuilder register(String userName,String password){
+        String url = "http://" + ADDRESS + ":" + PORT + REGISTER;
+        RestTemplate restTemplate = new RestTemplate();
+        //这里就是拼接请求的参数
+        MultiValueMap<String, String> requestEntity = new LinkedMultiValueMap<>();
+        requestEntity.add("userName", userName);
+        requestEntity.add("password", password);
+        //第三个参数表示把服务返回的json字符串转换成该类的对象
+        ResponseEntity<HttpResponseBuilder> response = restTemplate.postForEntity(url, requestEntity, HttpResponseBuilder.class);
+        return response.getBody();
+    }
+
+    /**
+     * 请求后端的登录服务
+     * @param userName
+     * @param password
+     * @return
+     */
+    public static HttpResponseBuilder login(String userName,String password){
+        String url = "http://" + ADDRESS + ":" + PORT + LOGIN;
+        RestTemplate restTemplate = new RestTemplate();
+        //这里就是拼接请求的参数
+        MultiValueMap<String, String> requestEntity = new LinkedMultiValueMap<>();
+        requestEntity.add("userName", userName);
+        requestEntity.add("password", password);
+        //第三个参数表示把服务返回的json字符串转换成该类的对象
+        ResponseEntity<HttpResponseBuilder> response = restTemplate.postForEntity(url, requestEntity, HttpResponseBuilder.class);
+        return response.getBody();
+    }
 }
