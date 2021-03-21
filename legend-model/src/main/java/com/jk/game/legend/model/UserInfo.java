@@ -18,35 +18,35 @@ public class UserInfo implements Serializable {
     /**
      *用户ID
      */
-    Integer userId;
+    private Integer userId;
 
     /**
      * 用户攻击
      */
-     Integer attack;
+     private Integer attack;
 
     /**
      *用户防御
      */
-    Integer defensive;
+    private Integer defensive;
 
     /**
      * 用户血量
      */
-    Integer health;
+    private Integer health;
 
     /**
      *暴击率
      */
-    Double critical;
+    private Double critical;
 
     /**
      * 速度
      */
-    Integer speed;
+    private Integer speed;
 
 
-    public UserInfo(Integer attack,Integer defensive,Integer health,double critical,Integer speed){
+    public UserInfo(Integer attack, Integer defensive, Integer health, double critical, Integer speed){
         this.attack = attack;
         this.defensive = defensive;
         this.health = health;

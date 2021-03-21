@@ -5,6 +5,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
@@ -19,6 +20,8 @@ public class HttpUtil {
 
     private static final String ADDRESS = "127.0.0.1";
     private static final Integer PORT = 8083;
+    private static final String LOGIN = "/user/register";
+    private static final String REGISTER = "/user/register";
 
     private List<String> cookies;
     private RestTemplate restTemplate = new RestTemplate();
