@@ -1,6 +1,8 @@
 package com.jk.game.legend.server.fight;
 
 import com.jk.game.legend.model.UserInfo;
+import com.jk.game.legend.server.fight.skill.HarmSkill;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,12 +13,10 @@ import java.util.List;
 public class FightManage {
 
     public static List<String> doFight(UserInfo p1, UserInfo p2){
-
         List<String> result = new ArrayList<>();
+        Respond respond = new Respond(new ArrayList<String>(),0,false);
         boolean priorityFlag;
         int roundCount = 1;
-        double critp1;
-        double critp2;
         int p1Health = p1.getHealth();
         int p2Health = p2.getHealth();
         if (p1.getSpeed().equals(p2.getSpeed())){
@@ -25,73 +25,44 @@ public class FightManage {
         }else {
             priorityFlag = p1.getSpeed() > p2.getSpeed();
         }
-        //2. 防御减伤比    n/(n+5)
-        //3. 爆伤 1.5
+
         while (p1.getHealth() >0 && p2.getHealth()>0){
-            critp1 = (int) (Math.random() * 101);
-            result.add(critp1+"");
-            result.add(p1.getCritical() * 100 +"");
-            critp2 = (int) (Math.random() * 101);
-            if (critp1 <= p1.getCritical() * 100){
-                critp1 = 1.5;
-                result.add("1111");
-            }else {
-                critp1 = 1;
-            }
-            if (critp2<=p2.getCritical() * 100){
-                critp2 = 1.5;
-            }else {
-                critp2 = 1;
-            }
+            respond.setHarmCollect(p1.getAttack() * p2.getDefensive()/(p2.getDefensive()+5));
             if (priorityFlag){
-                p2.setHealth(p2.getHealth() - (int)((p1.getAttack()*p2.getDefensive()/(p2.getDefensive() + 5)) * critp1));
-                if (p2.getHealth()<=0){
-                    result.add("第"+roundCount+"回合："+
-                            "玩家1给玩家2造成了"+
-                            (int)((p1.getAttack()*p2.getDefensive()/(p2.getDefensive() + 5)) * critp1)+"点伤害，" +
-                            "玩家2死亡");
+                respond.fightProcess.add("第"+roundCount+"回合，玩家一 >>>>");
+                Crit.isCrit(p1,p2,respond);
+                HarmSkill.attackTwice(p1,p2,respond);
+                if (respond.isDie){
+                    respond.fightProcess.add("给玩家2造成"+respond.getHarmCollect()+"点伤害,玩家二死亡");
                     break;
                 }
-                p1.setHealth(p1.getHealth() - (int)((p2.getAttack()*p1.getDefensive()/(p1.getDefensive() + 5)) * critp2));
-                if (p1.getHealth()<=0){
-                    result.add("第"+roundCount+"回合："+
-                            "玩家2给玩家1造成了"+
-                            (int)((p2.getAttack()*p1.getDefensive()/(p1.getDefensive() + 5)) * critp2)+"点伤害，" +
-                            "玩家1死亡");
+                respond.fightProcess.add("给玩家2造成"+respond.getHarmCollect()+"点伤害");
+                respond.fightProcess.add("玩家二 >>>>");
+                Crit.isCrit(p2,p1,respond);
+                HarmSkill.attackTwice(p2,p1,respond);
+                if (respond.isDie){
+                    respond.fightProcess.add("给玩家1造成"+respond.getHarmCollect()+"点伤害,玩家一死亡");
                     break;
                 }
-                result.add("第"+roundCount+"回合："+
-                        "玩家1给玩家2造成了"+
-                        (int)((p1.getAttack()*p2.getDefensive()/(p2.getDefensive() + 5)) * critp1)+"点伤害，" +
-                        "玩家2还剩"+p2.getHealth()+"点血。"+
-                        "玩家2给玩家1造成了"+
-                        (int)((p2.getAttack()*p1.getDefensive()/(p1.getDefensive() + 5)) * critp2)+"点伤害，" +
-                        "玩家1还剩"+p1.getHealth()+"点血。");
+                respond.fightProcess.add("给玩家1造成"+respond.getHarmCollect()+"点伤害");
                 roundCount ++;
             }else {
-                p1.setHealth(p1.getHealth() - (int)((p2.getAttack()*p1.getDefensive()/(p1.getDefensive() + 5)) * critp2));
-                if (p1.getHealth()<=0){
-                    result.add("第"+roundCount+"回合："+
-                            "玩家2给玩家1造成了"+
-                            (int)((p2.getAttack()*p1.getDefensive()/(p1.getDefensive() + 5)) * critp2)+"点伤害，" +
-                            "玩家1死亡");
+                respond.fightProcess.add("第"+roundCount+"回合，玩家二 >>>>");
+                Crit.isCrit(p2,p1,respond);
+                HarmSkill.attackTwice(p1,p2,respond);
+                if (respond.isDie){
+                    respond.fightProcess.add("给玩家1造成"+respond.getHarmCollect()+"点伤害,玩家一死亡");
                     break;
                 }
-                p2.setHealth(p2.getHealth() - (int)((p1.getAttack()*p2.getDefensive()/(p2.getDefensive() + 5)) * critp1));
-                if (p2.getHealth()<=0){
-                    result.add("第"+roundCount+"回合："+
-                            "玩家1给玩家2造成了"+
-                            (int)((p1.getAttack()*p2.getDefensive()/(p2.getDefensive() + 5)) * critp1)+"点伤害，" +
-                            "玩家2死亡");
+                respond.fightProcess.add("给玩家1造成"+respond.getHarmCollect()+"点伤害");
+                respond.fightProcess.add("玩家一 >>>>");
+                Crit.isCrit(p1,p2,respond);
+                HarmSkill.attackTwice(p2,p1,respond);
+                if (respond.isDie){
+                    respond.fightProcess.add("给玩家2造成"+respond.getHarmCollect()+"点伤害,玩家二死亡");
                     break;
                 }
-                result.add("第"+roundCount+"回合："+
-                        "玩家2给玩家1造成了"+
-                        (int)((p2.getAttack()*p1.getDefensive()/(p1.getDefensive() + 5)) * critp2)+"点伤害，" +
-                        "玩家1还剩"+ p1.getHealth()+"点血。"+
-                        "玩家1给玩家2造成了"+
-                        (int)((p1.getAttack()*p2.getDefensive()/(p2.getDefensive() + 5)) * critp1)+"点伤害，" +
-                        "玩家2还剩"+p2.getHealth()+"点血。");
+                respond.fightProcess.add("给玩家2造成"+respond.getHarmCollect()+"点伤害");
                 roundCount ++;
             }
         }
@@ -101,13 +72,13 @@ public class FightManage {
             p1.setAttack(p1.getAttack()+1);
             p1.setDefensive(p1.getDefensive()+1);
             p1.setHealth(p1Health+5);
-            result.add("恭喜您升级了！攻防+1，血量+5");
+            respond.fightProcess.add("恭喜您升级了！攻防+1，血量+5");
         }else {
             p2.setAttack(p2.getAttack()+1);
             p2.setDefensive(p2.getDefensive()+1);
             p2.setHealth(p2Health+5);
-            result.add("恭喜您升级了！攻防+1，血量+5");
+            respond.fightProcess.add("恭喜您升级了！攻防+1，血量+5");
         }
-        return result;
+        return respond.fightProcess;
     }
 }

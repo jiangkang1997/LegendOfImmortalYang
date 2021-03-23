@@ -44,14 +44,20 @@ public class UserInfo implements Serializable {
      * 速度
      */
     private Integer speed;
+    
+    /**
+     * 技能无影手，0代表没习得，1代表习得
+     */
+    private String skill;
 
 
-    public UserInfo(Integer attack, Integer defensive, Integer health, double critical, Integer speed){
+    public UserInfo(Integer attack, Integer defensive, Integer health, double critical, Integer speed,String skill){
         this.attack = attack;
         this.defensive = defensive;
         this.health = health;
         this.critical = critical;
         this.speed = speed;
+        this.skill = skill;
     }
 
     public UserInfo(Integer userId){

@@ -49,7 +49,7 @@ public class MainFrame extends JFrame {
         registerButton.setBounds(600,500,100,30);
 
         UserService userService = SpringUtil.getBean(UserService.class);
-
+        //创建抽象类MouseAdapter的匿名实现类的匿名对象
         registerButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
