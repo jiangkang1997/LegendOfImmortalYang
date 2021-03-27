@@ -5,6 +5,7 @@ import com.jk.game.legend.model.User;
 import com.jk.game.legend.server.mapper.SeeMyFriendMapper;
 import com.jk.game.legend.server.mapper.UserMapper;
 import com.jk.game.legend.server.service.SeeMyFriendRequestService;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
@@ -12,6 +13,7 @@ import javax.annotation.Resource;
  * @author xiayuyang
  * @create 2021-03-26-19:42
  */
+@Service
 public class SeeMyFriendServiceImpl implements SeeMyFriendRequestService {
 
     @Resource

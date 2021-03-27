@@ -18,15 +18,15 @@ public class UserFriend {
     /**
      * 好友列表
      */
-    private String sumUserFriend;
+    private String userFriend;
 
     /**
      * 好友请求
      */
-    private String friendrequest;
+    private String friendRequest;
 
-    public UserFriend(String sumUserFriend, String friendrequest) {
-        this.sumUserFriend = sumUserFriend;
-        this.friendrequest = friendrequest;
+    public UserFriend(String userFriend, String friendRequest) {
+        this.userFriend = userFriend;
+        this.friendRequest = friendRequest;
     }
 }

@@ -2,12 +2,16 @@ package com.jk.game.legend.server.mapper;
 
 import com.jk.game.legend.model.User;
 import com.jk.game.legend.model.UserFriend;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
 /**
  * @author xiayuyang
  * @create 2021-03-26-21:01
  */
+@Mapper
+@Component
 public interface HandleMyFriendRequestMapper {
 
     /**
@@ -27,6 +31,7 @@ public interface HandleMyFriendRequestMapper {
      * 处理好友请求
      * @param friendRequest
      */
-    String updateFriendRequest(@Param("FriendRequest")String friendRequest );
+    void updateFriendRequest(@Param("friendRequest")String friendRequest,
+                             @Param("userId")Integer userId );
 
 }

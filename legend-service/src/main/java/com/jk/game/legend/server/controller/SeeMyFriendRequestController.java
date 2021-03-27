@@ -15,14 +15,14 @@ import javax.annotation.Resource;
  * @create 2021-03-26-19:37
  */
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/see")
 @Slf4j
 public class SeeMyFriendRequestController {
 
     @Resource
     private SeeMyFriendRequestService seeMyFriendRequestService;
 
-    @PostMapping("/SeeFriendRequest")
+    @PostMapping("/friendRequest")
     public HttpResponseBuilder seeMyFriendRequestControer(String userName)  {
         return HttpResponseBuilder.builderSuccess(seeMyFriendRequestService.seeMyFriendRequest(userName));
     }

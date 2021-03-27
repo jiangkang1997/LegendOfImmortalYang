@@ -11,10 +11,10 @@ public interface SendFriendRequestService {
 
     /**
      * 通过游戏名查询用户信息
-     * @param userNamep1
-     * @param userNamep2
+     * @param userIdp1
+     * @param userIdp2
      * @return
      * @throws BusinessException
      */
-    String getUserInfoByUserName(String userNamep1,String userNamep2) throws BusinessException;
+    String getUserInfoByUserName(Integer userIdp1,Integer userIdp2) throws BusinessException;
 }
