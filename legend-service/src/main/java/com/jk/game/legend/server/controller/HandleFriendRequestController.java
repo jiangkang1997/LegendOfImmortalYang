@@ -19,11 +19,17 @@ import javax.annotation.Resource;
 public class HandleFriendRequestController {
 
     @Resource
-    private HandleFriendRequestService manageFriendRequestService;
+    private HandleFriendRequestService handleFriendRequestService;
 
+    /**
+     * P1处理P2的好友请求
+     * @param isAdd
+     * @param userNameP1
+     * @param userNameP2
+     */
     @PostMapping("/HandleFriendRequest")
     public void manageFriendRequestControer(boolean isAdd,String userNameP1,String userNameP2){
-        manageFriendRequestService.manageFriendRequest(isAdd,userNameP1,userNameP2);
+        handleFriendRequestService.handleFriendRequest(isAdd,userNameP1,userNameP2);
     }
 
 

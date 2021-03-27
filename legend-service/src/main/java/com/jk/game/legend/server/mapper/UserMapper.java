@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 @Component
 public interface UserMapper {
 
-
     /**
      * 插入
      * @param record

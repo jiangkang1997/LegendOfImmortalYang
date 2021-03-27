@@ -4,7 +4,7 @@ import com.jk.game.legend.model.User;
 import com.jk.game.legend.model.UserFriend;
 import com.jk.game.legend.model.UserInfo;
 import com.jk.game.legend.server.common.BusinessException;
-import com.jk.game.legend.server.mapper.AddFriendMapper;
+import com.jk.game.legend.server.mapper.HandleMyFriendRequestMapper;
 import com.jk.game.legend.server.mapper.UserInfoMapper;
 import com.jk.game.legend.server.mapper.UserMapper;
 import com.jk.game.legend.server.service.UserService;
@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
     @Resource
     private UserInfoMapper userInfoMapper;
     @Resource
-    private AddFriendMapper addFriendMapper;
+    private HandleMyFriendRequestMapper handleMyFriendRequestMapper;
 
 
     @Override
@@ -37,13 +37,13 @@ public class UserServiceImpl implements UserService {
         }
         User user = new User(userName,password);
         userMapper.insert(user);
-        //创建初始化人物，插入到userinfo表
+        //创建初始化人物信息，插入到userinfo表
         UserInfo userInfo = new UserInfo(5,5,5,0.05,5,"0");
         userInfo.setUserId(userMapper.getByUserName(userName).getUserId());
         userInfoMapper.insert(userInfo);
-        //初始化好友
-        UserFriend userFriend = new UserFriend(userMapper.getByUserName(userName).getUserId(),null,null);
-        addFriendMapper.insertByUserId(userFriend);
+        //初始化好友，插入到user_friend表
+        UserFriend userFriend = new UserFriend(null,null);
+        handleMyFriendRequestMapper.insertByUserId(userFriend);
     }
 
     @Override

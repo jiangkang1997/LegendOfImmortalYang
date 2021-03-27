@@ -1,9 +1,14 @@
 package com.jk.game.legend.model;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  * @author xiayuyang
  * @create 2021-03-26-22:37
  */
+@Data
+@NoArgsConstructor
 public class UserFriend {
     /**
      * 用户id
@@ -13,16 +18,15 @@ public class UserFriend {
     /**
      * 好友列表
      */
-    private String userFriend;
+    private String sumUserFriend;
 
     /**
      * 好友请求
      */
     private String friendrequest;
 
-    public UserFriend(Integer userId, String userFriend, String friendrequest) {
-        this.userId = userId;
-        this.userFriend = userFriend;
+    public UserFriend(String sumUserFriend, String friendrequest) {
+        this.sumUserFriend = sumUserFriend;
         this.friendrequest = friendrequest;
     }
 }

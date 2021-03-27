@@ -11,5 +11,5 @@ public interface HandleFriendRequestService {
      * @param isAdd
      * @return
      */
-    void manageFriendRequest(boolean isAdd,String userNameP1,String userNamep2);
+    void handleFriendRequest(boolean isAdd,String userNameP1,String userNamep2);
 }

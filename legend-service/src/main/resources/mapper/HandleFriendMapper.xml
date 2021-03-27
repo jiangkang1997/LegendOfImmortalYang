@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jk.game.legend.server.mapper.HandleFriendRequestMapper">
+
+    <resultMap id="BaseResultMap" type="com.jk.game.legend.model.UserFriend">
+        <result column="userid" jdbcType="INTEGER" property="userId"/>
+        <result column="userfriend" jdbcType="VARCHAR" property="userfriend"/>
+        <result column="friendrequest" jdbcType="VARCHAR" property="friendrequest"/>
+    </resultMap>
+
+    <update id="updateFriendRequest" >
+        update user_friend set'friendrequest'= #{friendrequest}
+        where userid = #{userId}
+    </update>
+
+    <insert id="insertByUserId" parameterType="com.jk.game.legend.model.UserFriend">
+        insert into user_Friend (userid, userfriend, friendrequest
+        )
+        values (#{userId,jdbcType=INTEGER}, #{userfriend,jdbcType=VARCHAR}, #{friendrequest,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <update id="addFriendByUserId" >
+        update user_friend set'userfriend'= #{userfriend}
+        where userid = #{userId}
+    </update>
+
+</mapper>

@@ -34,14 +34,14 @@ public class User implements Serializable {
     private String password;
 
     /**
-     * 玩家好友
+     * 玩家个人信息
      */
-    private String userFriend;
+    private UserInfo userInfo;
 
     /**
-     * 玩家好友请求
+     * 玩家好友信息
      */
-    private String friendrequest;
+    private UserFriend userFriend;
 
     @Override
     public boolean equals(Object o) {

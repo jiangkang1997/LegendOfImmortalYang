@@ -2,7 +2,7 @@ package com.jk.game.legend.server.controller;
 
 import com.jk.game.legend.model.HttpResponseBuilder;
 import com.jk.game.legend.server.common.BusinessException;
-import com.jk.game.legend.server.service.AddFriendService;
+import com.jk.game.legend.server.service.SendFriendRequestService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,11 +18,11 @@ import javax.annotation.Resource;
 @RestController
 @RequestMapping("/user")
 @Slf4j
-public class AddFriendControer {
+public class SendFriendRequestControer {
 
 
     @Resource
-    private AddFriendService addFriendService;
+    private SendFriendRequestService sendFriendRequestService;
 
     /**
      * 玩家一给玩家二发送好友请求
@@ -30,7 +30,7 @@ public class AddFriendControer {
      * @param userNamep2
      * @return
      */
-    @PostMapping("/AddFriend")
+    @PostMapping("/SendFriendRequestMapper")
     public HttpResponseBuilder addFriendControer(String userNamep1,String userNamep2){
         if (userNamep1.equals(userNamep2)){
             return HttpResponseBuilder.builderFail("不能加自己好友！");
@@ -39,7 +39,7 @@ public class AddFriendControer {
         }
         String respond;
         try {
-            respond = addFriendService.getUserInfoByUserName(userNamep1,userNamep2);
+            respond = sendFriendRequestService.getUserInfoByUserName(userNamep1,userNamep2);
         }catch (BusinessException e){
             return HttpResponseBuilder.builderFail(e.getMessage());
         } catch (Exception e) {

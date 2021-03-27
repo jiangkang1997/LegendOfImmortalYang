@@ -7,7 +7,7 @@ import com.jk.game.legend.server.common.BusinessException;
  * @author xiayuyang
  * @create 2021-03-23-22:42
  */
-public interface AddFriendService {
+public interface SendFriendRequestService {
 
     /**
      * 通过游戏名查询用户信息
