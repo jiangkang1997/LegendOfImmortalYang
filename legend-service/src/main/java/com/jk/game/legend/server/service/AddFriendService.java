@@ -8,11 +8,13 @@ import com.jk.game.legend.server.common.BusinessException;
  * @create 2021-03-23-22:42
  */
 public interface AddFriendService {
+
     /**
      * 通过游戏名查询用户信息
-     * @param userName
-     * @return UserInfo
+     * @param userNamep1
+     * @param userNamep2
+     * @return
      * @throws BusinessException
      */
-    boolean getUserInfoByUserName(String userName) throws BusinessException;
+    String getUserInfoByUserName(String userNamep1,String userNamep2) throws BusinessException;
 }

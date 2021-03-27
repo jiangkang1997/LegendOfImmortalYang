@@ -69,7 +69,7 @@ public class FightManage {
                     break;
                 }
                 respond.fightProcess.add("给玩家1造成"+respond.getHarmCollect()+"点伤害");
-                
+
                 respond.setHarmCollect(p2.getAttack() * p1.getDefensive()/(p1.getDefensive()+5));
                 respond.fightProcess.add("玩家一 >>>>");
                 Crit.isCrit(p1,p2,respond.getHarmCollect(),respond);

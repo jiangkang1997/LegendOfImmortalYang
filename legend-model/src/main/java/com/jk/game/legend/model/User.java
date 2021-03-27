@@ -33,6 +33,16 @@ public class User implements Serializable {
      */
     private String password;
 
+    /**
+     * 玩家好友
+     */
+    private String userFriend;
+
+    /**
+     * 玩家好友请求
+     */
+    private String friendrequest;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

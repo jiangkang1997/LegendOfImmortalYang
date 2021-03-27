@@ -1,8 +1,10 @@
 package com.jk.game.legend.server.service.impl;
 
 import com.jk.game.legend.model.User;
+import com.jk.game.legend.model.UserFriend;
 import com.jk.game.legend.model.UserInfo;
 import com.jk.game.legend.server.common.BusinessException;
+import com.jk.game.legend.server.mapper.AddFriendMapper;
 import com.jk.game.legend.server.mapper.UserInfoMapper;
 import com.jk.game.legend.server.mapper.UserMapper;
 import com.jk.game.legend.server.service.UserService;
@@ -24,6 +26,9 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
     @Resource
     private UserInfoMapper userInfoMapper;
+    @Resource
+    private AddFriendMapper addFriendMapper;
+
 
     @Override
     public synchronized void register(String userName, String password) throws BusinessException {
@@ -36,6 +41,9 @@ public class UserServiceImpl implements UserService {
         UserInfo userInfo = new UserInfo(5,5,5,0.05,5,"0");
         userInfo.setUserId(userMapper.getByUserName(userName).getUserId());
         userInfoMapper.insert(userInfo);
+        //初始化好友
+        UserFriend userFriend = new UserFriend(userMapper.getByUserName(userName).getUserId(),null,null);
+        addFriendMapper.insertByUserId(userFriend);
     }
 
     @Override
