@@ -28,4 +28,6 @@ public interface UserInfoMapper {
      * @return
      */
     void insert(UserInfo userInfo);
+
+
 }

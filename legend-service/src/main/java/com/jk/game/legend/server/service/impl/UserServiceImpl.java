@@ -4,7 +4,7 @@ import com.jk.game.legend.model.User;
 import com.jk.game.legend.model.UserFriend;
 import com.jk.game.legend.model.UserInfo;
 import com.jk.game.legend.server.common.BusinessException;
-import com.jk.game.legend.server.mapper.HandleMyFriendRequestMapper;
+import com.jk.game.legend.server.mapper.AddFriendMapper;
 import com.jk.game.legend.server.mapper.UserInfoMapper;
 import com.jk.game.legend.server.mapper.UserMapper;
 import com.jk.game.legend.server.service.UserService;
@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
     @Resource
     private UserInfoMapper userInfoMapper;
     @Resource
-    private HandleMyFriendRequestMapper handleMyFriendRequestMapper;
+    private AddFriendMapper AddFriendMapper ;
 
 
     @Override
@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
         userInfoMapper.insert(userInfo);
         //初始化好友，插入到user_friend表
         UserFriend userFriend = new UserFriend(null,null);
-        handleMyFriendRequestMapper.insertByUserId(userFriend);
+        AddFriendMapper .insertByUserId(userFriend);
     }
 
     @Override
