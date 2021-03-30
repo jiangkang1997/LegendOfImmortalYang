@@ -22,14 +22,29 @@ public class Respond {
     public List<String> fightProcess;
 
     /**
-     * 伤害汇总，记录每次在基础伤害上增加或减少的值
+     *每回合伤害汇总
      */
-    double harmCollect;
+    int harmCollect;
 
     /**
-     * 判断玩家是否死亡，true代表死亡
+     * 对局赢家
+     * true代表获胜
      */
-    boolean isDie;
+    public boolean winner;
+
+    /**
+     * 战斗过程中是否触发技能
+     * 1 暴击
+     * 2 无影手
+     * 3
+     * 4
+     * 5
+     * 6
+     * 7
+     * 8
+     * 9
+     */
+    public int[] isTouchSkills;
 
     /**
      * 玩家1
@@ -41,9 +56,13 @@ public class Respond {
      */
     UserInfo p2;
 
-    public Respond(List<String> fightProcess, double harmCollect , boolean isDie) {
+    int count;
+
+    public Respond(List<String> fightProcess, int harmCollect ,boolean winner, int[] isTouchSkills, int count) {
         this.fightProcess = fightProcess;
         this.harmCollect = harmCollect;
-        this.isDie = isDie;
+        this.winner = winner;
+        this.isTouchSkills = isTouchSkills;
+        this.count = count;
     }
 }

@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
         userInfoMapper.insert(userInfo);
         //初始化好友，插入到user_friend表
         UserFriend userFriend = new UserFriend(null,null);
-        AddFriendMapper .insertByUserId(userFriend);
+        AddFriendMapper.insertByUserId(userFriend);
     }
 
     @Override

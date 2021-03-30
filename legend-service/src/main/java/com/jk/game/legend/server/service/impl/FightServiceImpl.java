@@ -5,7 +5,6 @@ import com.jk.game.legend.server.common.BusinessException;
 import com.jk.game.legend.server.fight.FightManage;
 import com.jk.game.legend.server.mapper.UserInfoMapper;
 import com.jk.game.legend.server.service.FightService;
-import com.jk.game.legend.server.service.UserService;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -31,6 +30,8 @@ public class FightServiceImpl implements FightService {
         UserInfo userInfop2 = userInfoMapper.getUserInfoByUserId(p2Id);
         //2. 模拟对战 封装 result 对象
         List<String> result = FightManage.doFight(userInfop1,userInfop2);
+
+
         return new ArrayList<>(result);
     }
 }
