@@ -3,7 +3,6 @@ package com.jk.game.legend.server.fight.skill;
 
 import com.jk.game.legend.model.UserInfo;
 
-import com.jk.game.legend.server.fight.IsDie;
 import com.jk.game.legend.server.fight.Respond;
 
 
@@ -12,22 +11,22 @@ import com.jk.game.legend.server.fight.Respond;
  * @create 2021-03-22-18:57
  */
 public class HarmSkill {
-    public static Respond attackTwice(UserInfo p1, UserInfo p2,int harmCollect, Respond respond){
-        //判断玩家是否习得这个技能
-        if (p1.getSkill().contains("1")){
-            //20%几率触发
-            int probability = (int)(Math.random() * 101);
+    /**
+     * 无影手：连续攻击两次，该技能与暴击不可同时触发
+     * @param p1
+     * @param p2
+     * @param respond
+     */
+    public static void attackTwice(UserInfo p1, UserInfo p2, Respond respond){
+        //判断玩家是否习得这个技能，且前面是否已经触发暴击
+        if (p1.getSkill().contains("1") && !respond.isTouchSkills.contains(0)){
+            int probability = (int)(Math.random() * 100);
             if (probability <= 20){
-                respond.isTouchSkills[1]=2;
-                respond.setHarmCollect(harmCollect*2);
-                //触发技能并且杀死了玩家
-                if ((IsDie.isDie(respond, p1, p2)).winner){
-                    return respond;
-                }
-                //触发技能，没杀死，扣血，并且此时的伤害增加为基础伤害的两倍，有助于后续技能的叠加
-                p2.setHealth(p2.getHealth()-(int)(harmCollect*2));
+                //触发了无影手，做个标记
+                respond.isTouchSkills.add(1);
+                //扣血
+                p2.setHealth((p2.getHealth()-p1.getAttack()*p2.getDefensive()/p2.getDefensive()+5));
             }
         }
-        return respond;
     }
 }

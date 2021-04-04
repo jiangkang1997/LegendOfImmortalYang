@@ -4,6 +4,7 @@ import com.jk.game.legend.model.UserInfo;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,15 +23,9 @@ public class Respond {
     public List<String> fightProcess;
 
     /**
-     *每回合伤害汇总
-     */
-    int harmCollect;
-
-    /**
      * 对局赢家
-     * true代表获胜
      */
-    public boolean winner;
+    public String winner;
 
     /**
      * 战斗过程中是否触发技能
@@ -44,7 +39,7 @@ public class Respond {
      * 8
      * 9
      */
-    public int[] isTouchSkills;
+    public List<Integer> isTouchSkills;
 
     /**
      * 玩家1
@@ -58,11 +53,16 @@ public class Respond {
 
     int count;
 
-    public Respond(List<String> fightProcess, int harmCollect ,boolean winner, int[] isTouchSkills, int count) {
+    public static String player1 = "玩家一";
+
+    public static String player2 = "玩家二";
+
+    public Respond(List<String> fightProcess,String winner, List<Integer> isTouchSkills, int count,UserInfo p1, UserInfo p2) {
         this.fightProcess = fightProcess;
-        this.harmCollect = harmCollect;
         this.winner = winner;
         this.isTouchSkills = isTouchSkills;
         this.count = count;
+        this.p1 = p1;
+        this.p2 = p2;
     }
 }

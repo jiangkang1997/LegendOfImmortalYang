@@ -12,16 +12,14 @@ import java.util.List;
 public class FightManage {
 
     public static List<String> doFight(UserInfo p1, UserInfo p2){
-
-        Respond respond = new Respond(new ArrayList<>(),0,false,new int[10],1);
-        //记录下开始的双方玩家的血量
+        Respond respond = new Respond(new ArrayList<>(),null,new ArrayList<>(),1,p1,p2);
+        //记录开始的双方玩家的血量
         int p1Health = p1.getHealth();
         int p2Health = p2.getHealth();
         //确定第一次攻击的优先级
         boolean priority = Priority.priority(p1, p2);
         //对战过程
-        respond = FightProcess.fightProcess(respond,p1,p2,priority);
-
+        FightProcess.fightProcess(respond,p1,p2,priority);
 
         //结算战斗，攻防+1，血量+5
         if (p1.getHealth()>0){
