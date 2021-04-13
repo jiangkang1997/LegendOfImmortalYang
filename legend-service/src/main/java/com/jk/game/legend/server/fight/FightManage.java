@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class FightManage {
 
-    public static List<String> doFight(UserInfo p1, UserInfo p2){
+    public static Respond doFight(UserInfo p1, UserInfo p2){
         Respond respond = new Respond(new ArrayList<>(),null,new ArrayList<>(),1,p1,p2);
         //记录开始的双方玩家的血量
         int p1Health = p1.getHealth();
@@ -26,15 +26,11 @@ public class FightManage {
             p1.setAttack(p1.getAttack()+1);
             p1.setDefensive(p1.getDefensive()+1);
             p1.setHealth(p1Health+5);
-            respond.fightProcess.add("恭喜您升级了！攻防+1，血量+5");
-            //respond.winner = true;
         }else {
             p2.setAttack(p2.getAttack()+1);
             p2.setDefensive(p2.getDefensive()+1);
             p2.setHealth(p2Health+5);
-            respond.fightProcess.add("恭喜您升级了！攻防+1，血量+5");
-            //respond.winner = false;
         }
-        return respond.fightProcess;
+        return respond;
     }
 }

@@ -21,11 +21,11 @@ public class HarmSkill {
         //判断玩家是否习得这个技能，且前面是否已经触发暴击
         if (p1.getSkill().contains("1") && !respond.isTouchSkills.contains(0)){
             int probability = (int)(Math.random() * 100);
-            if (probability <= 20){
+            if (probability <= 50){
                 //触发了无影手，做个标记
                 respond.isTouchSkills.add(1);
                 //扣血
-                p2.setHealth((p2.getHealth()-p1.getAttack()*p2.getDefensive()/p2.getDefensive()+5));
+                p2.setHealth((p2.getHealth()-p1.getAttack()*p2.getDefensive()/(p2.getDefensive()+5)));
             }
         }
     }

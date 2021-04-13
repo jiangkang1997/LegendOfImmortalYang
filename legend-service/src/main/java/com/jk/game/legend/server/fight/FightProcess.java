@@ -13,13 +13,12 @@ public class FightProcess {
         UserInfo p;
         String s;
         count = 2;
-        while (p1.getHealth()>=0 || p2.getHealth()>=0) {
-            if (count % 2 == 0) {
-                respond.fightProcess.add("第" + count / 2 + "回合");
-            }
-            respond.fightProcess.add(Respond.player1);
+        while (p1.getHealth()>0 && p2.getHealth()>0) {
             if (priority) {
-                p2.setHealth((p2.getHealth() - p1.getAttack() * p2.getDefensive() / p2.getDefensive() + 5));
+                if (count % 2 == 0) {
+                    respond.fightProcess.add("第" + count / 2 + "回合");
+                }
+                p2.setHealth((p2.getHealth() - p1.getAttack() * p2.getDefensive() / (p2.getDefensive() + 5)));
                 //是否暴击
                 Crit.isCrit(p1,p2,respond);
                 //是否触发无影手技能

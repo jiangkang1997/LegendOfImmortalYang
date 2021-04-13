@@ -12,5 +12,4 @@ public class LegendServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(LegendServiceApplication.class, args);
     }
-
 }

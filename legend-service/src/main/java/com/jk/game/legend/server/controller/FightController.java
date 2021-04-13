@@ -27,6 +27,7 @@ public class FightController {
             return HttpResponseBuilder.builderFail("参数不能为空");
         }
         List<String> result = fightService.doFight(p1Id, p2Id);
+
         return HttpResponseBuilder.builderSuccess(result);
     }
 }
