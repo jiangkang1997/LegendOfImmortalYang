@@ -35,15 +35,13 @@ public class UserServiceImpl implements UserService {
         if(userMapper.getByUserName(userName) != null){
             throw new BusinessException("该id已存在");
         }
-        User user = new User(userName,password);
-        userMapper.insert(user);
-        //创建初始化人物信息，插入到userinfo表
-        UserInfo userInfo = new UserInfo(5,5,5,0.05,5,"0");
-        userInfo.setUserId(userMapper.getByUserName(userName).getUserId());
-        userInfoMapper.insert(userInfo);
-        //初始化好友，插入到user_friend表
-        UserFriend userFriend = new UserFriend(null,null);
-        AddFriendMapper.insertByUserId(userFriend);
+        //创建user1对象，将对象加到数据库
+        User user1 = new User(userName,password);
+        userMapper.insert(user1);
+        //初始化玩家信息和好友信息
+        User user2 = userMapper.getByUserName(userName);
+        userInfoMapper.insert(user2.getUserId());
+        AddFriendMapper.insertByUserId(user2.getUserId());
     }
 
     @Override

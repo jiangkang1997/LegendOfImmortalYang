@@ -6,6 +6,8 @@
 
     <resultMap id="BaseResultMap" type="com.jk.game.legend.model.UserInfo">
         <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="level" jdbcType="INTEGER" property="level"/>
+        <result column="experience" jdbcType="DOUBLE" property="experience"/>
         <result column="attack" jdbcType="INTEGER" property="attack"/>
         <result column="defensive" jdbcType="INTEGER" property="defensive"/>
         <result column="health" jdbcType="INTEGER" property="health"/>
@@ -20,9 +22,9 @@
     </select>
 
     <insert id="insert" parameterType="com.jk.game.legend.model.UserInfo">
-        INSERT INTO user_info(user_id,attack,defensive,health,critical,speed,skill
+        INSERT INTO user_info(user_id
         )
-        VALUES(#{userId},#{attack},#{defensive},#{health},#{critical},#{speed},#{skill}
+        VALUES(#{userId}
         )
     </insert>
 

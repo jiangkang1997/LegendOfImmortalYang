@@ -1,4 +1,4 @@
-package com.jk.game.legend.server.fight;
+package com.jk.game.legend.server.fight.common;
 
 import com.jk.game.legend.model.UserInfo;
 

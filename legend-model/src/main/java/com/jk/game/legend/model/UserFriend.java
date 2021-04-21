@@ -16,17 +16,17 @@ public class UserFriend {
     private Integer userId;
 
     /**
-     * 好友列表
+     * 已经添加的好友
      */
-    private String userFriend;
+    private String addedFriend;
 
     /**
      * 好友请求
      */
     private String friendRequest;
 
-    public UserFriend(String userFriend, String friendRequest) {
-        this.userFriend = userFriend;
+    public UserFriend(String addedFriend, String friendRequest) {
+        this.addedFriend = addedFriend;
         this.friendRequest = friendRequest;
     }
 }

@@ -24,10 +24,10 @@ public interface UserInfoMapper {
 
     /**
      * 通过Id插入
-     * @param userInfo
+     * @param userId
      * @return
      */
-    void insert(UserInfo userInfo);
+    void insert(@Param("userId") Integer userId);
 
 
 }

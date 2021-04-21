@@ -1,9 +1,10 @@
 package com.jk.game.legend.server.fight;
 
 import com.jk.game.legend.model.UserInfo;
+import com.jk.game.legend.server.fight.common.Priority;
+import com.jk.game.legend.server.fight.common.Respond;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author jk

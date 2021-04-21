@@ -48,6 +48,8 @@ public interface FightMapper {
      * @param health
      */
     void updateInfo(@Param("userId") Integer userId,
+                    @Param("level") Integer level,
+                    @Param("experience") Double experience,
                     @Param("attack") Integer attack,
                     @Param("defensive") Integer defensive,
                     @Param("health") Integer health

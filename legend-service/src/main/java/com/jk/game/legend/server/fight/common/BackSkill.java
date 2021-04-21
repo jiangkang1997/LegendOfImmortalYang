@@ -1,7 +1,7 @@
-package com.jk.game.legend.server.fight;
+package com.jk.game.legend.server.fight.common;
 
 import com.jk.game.legend.model.UserInfo;
-import com.jk.game.legend.server.fight.*;
+import com.jk.game.legend.server.fight.common.Respond;
 
 /**
  * @author xiayuyang

@@ -27,13 +27,13 @@ public class AddFriendControer {
     private AddFriendService addFriendService;
 
     /**
-     * 玩家一给玩家二发送好友请求
+     * 玩家二给玩家一发送好友请求
      * @param userIdp1
      * @param userIdp2
      * @return
      */
     @GetMapping("/sendRequest")
-    public HttpResponseBuilder addFriendControer(Integer userIdp1,Integer userIdp2){
+    public HttpResponseBuilder addFriendController(Integer userIdp1, Integer userIdp2){
         if (userIdp2==null || userIdp1==null){
             return HttpResponseBuilder.builderFail("游戏ID不能为空！");
         }else if(userIdp1.equals(userIdp2)){
@@ -57,8 +57,15 @@ public class AddFriendControer {
      * @return
      */
     @GetMapping("/seeMyFriend")
-    public HttpResponseBuilder seeMyFriendRequestControer(Integer userId)  {
-        return HttpResponseBuilder.builderSuccess(addFriendService.seeMyFriendRequest(userId));
+    public HttpResponseBuilder seeMyFriendRequestController(Integer userId)  {
+        String respond;
+        try {
+            respond = addFriendService.seeMyFriendRequest(userId);
+        } catch (BusinessException e) {
+            return HttpResponseBuilder.builderFail(e.getMessage());
+        }
+        return HttpResponseBuilder.builderFail(respond);
+
     }
 
     /**
@@ -68,8 +75,7 @@ public class AddFriendControer {
      * @param userIdp2
      */
     @GetMapping("/HandleRequest")
-    public void manageFriendRequestControer(boolean isAdd,Integer userIdp1,Integer userIdp2){
+    public void manageFriendRequestController(boolean isAdd, Integer userIdp1, Integer userIdp2){
         addFriendService.handleFriendRequest(isAdd,userIdp1,userIdp2);
     }
-
 }

@@ -1,20 +1,21 @@
-package com.jk.game.legend.server.fight;
+package com.jk.game.legend.server.fight.common;
 
 import com.jk.game.legend.model.UserInfo;
+import com.jk.game.legend.server.fight.common.Respond;
 
 
 /**
  * @author xiayuyang
  * @create 2021-03-22-22:21
  */
-class Crit {
+public class Crit {
     /**
      * 暴击：几率取决于该玩家的属性，暴击伤害为1.5倍的基础伤害
      * @param p1
      * @param p2
      * @param respond
      */
-    public static void isCrit(UserInfo p1, UserInfo p2,Respond respond){
+    public static void isCrit(UserInfo p1, UserInfo p2, Respond respond){
         int probability = (int) (Math.random() * 100);
         if (probability <= p1.getCritical() * 100){
             //触发了暴击，做个标记

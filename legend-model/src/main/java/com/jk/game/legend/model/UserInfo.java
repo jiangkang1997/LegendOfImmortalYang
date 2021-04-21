@@ -21,6 +21,16 @@ public class UserInfo implements Serializable {
     private Integer userId;
 
     /**
+     * 用户等级
+     */
+    private Integer level;
+
+    /**
+     * 用户经验
+     */
+    private Double experience;
+
+    /**
      * 用户攻击
      */
      private Integer attack;
@@ -51,7 +61,9 @@ public class UserInfo implements Serializable {
     private String skill;
 
 
-    public UserInfo(Integer attack, Integer defensive, Integer health, double critical, Integer speed,String skill){
+    public UserInfo(Integer level,Double experience,Integer attack, Integer defensive, Integer health, double critical, Integer speed,String skill){
+        this.level = level;
+        this.experience = experience;
         this.attack = attack;
         this.defensive = defensive;
         this.health = health;

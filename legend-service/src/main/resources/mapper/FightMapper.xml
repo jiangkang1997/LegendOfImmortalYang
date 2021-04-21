@@ -4,6 +4,8 @@
 
     <resultMap id="BaseResultMap" type="com.jk.game.legend.model.UserInfo">
         <result column="user_Id" jdbcType="INTEGER" property="userId"/>
+        <result column="level" jdbcType="INTEGER" property="level"/>
+        <result column="experience" jdbcType="DOUBLE" property="experience"/>
         <result column="attack" jdbcType="INTEGER" property="attack"/>
         <result column="defensive" jdbcType="INTEGER" property="defensive"/>
         <result column="health" jdbcType="INTEGER" property="health"/>
@@ -25,7 +27,7 @@
     </update>
 
     <update id="updateInfo" parameterType="com.jk.game.legend.model.UserInfo">
-        update user_info set attack = #{attack},defensive = #{defensive},health = #{health}
+        update user_info set level = #{level},experience = #{experience},attack = #{attack},defensive = #{defensive},health = #{health}
         where user_Id = #{userId}
     </update>
 

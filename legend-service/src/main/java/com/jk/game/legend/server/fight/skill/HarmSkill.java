@@ -3,7 +3,7 @@ package com.jk.game.legend.server.fight.skill;
 
 import com.jk.game.legend.model.UserInfo;
 
-import com.jk.game.legend.server.fight.Respond;
+import com.jk.game.legend.server.fight.common.Respond;
 
 
 /**

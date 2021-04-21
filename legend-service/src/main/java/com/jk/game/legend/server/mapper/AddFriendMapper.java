@@ -26,13 +26,13 @@ public interface AddFriendMapper {
      * @return
      */
     void addFriendByUserId(@Param("userId") Integer userId,
-                           @Param("userFriend") String userFriend);
+                           @Param("addedFriend") String addedFriend);
 
     /**
      * 根据ID在user_friend表中插入初始化好友信息
-     * @param userFriend
+     * @param userId
      */
-    void insertByUserId(UserFriend userFriend);
+    void insertByUserId(@Param("userId") Integer userId);
 
     /**
      * 处理好友请求

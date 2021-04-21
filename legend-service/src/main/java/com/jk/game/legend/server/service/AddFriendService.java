@@ -23,7 +23,7 @@ public interface AddFriendService {
      * @param userId
      * @return
      */
-    String seeMyFriendRequest(Integer userId);
+    String seeMyFriendRequest(Integer userId) throws BusinessException;
 
 
     /**

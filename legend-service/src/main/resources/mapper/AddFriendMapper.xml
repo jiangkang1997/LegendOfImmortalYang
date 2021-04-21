@@ -3,32 +3,32 @@
 <mapper namespace="com.jk.game.legend.server.mapper.AddFriendMapper">
 
     <resultMap id="BaseResultMap" type="com.jk.game.legend.model.UserFriend">
-        <result column="userid" jdbcType="INTEGER" property="userId"/>
-        <result column="userfriend" jdbcType="VARCHAR" property="userFriend"/>
-        <result column="friendrequest" jdbcType="VARCHAR" property="friendRequest"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="added_friend" jdbcType="VARCHAR" property="addedFriend"/>
+        <result column="friend_request" jdbcType="VARCHAR" property="friendRequest"/>
     </resultMap>
 
     <select id="getUserFriendById" resultMap="BaseResultMap">
         SELECT * from user_friend
-        where userid = #{userId}
+        where user_id = #{userId}
     </select>
 
     <update id="addFriendByUserId" parameterType="com.jk.game.legend.model.UserFriend">
-        update user_friend set userfriend = #{userFriend}
-        where userid = #{userId}
+        update user_friend set added_friend = #{addedFriend}
+        where user_id = #{userId}
     </update>
 
 
     <insert id="insertByUserId" parameterType="com.jk.game.legend.model.UserFriend">
-        insert into user_Friend (userid, userfriend, friendrequest
+        insert into user_Friend (user_id
         )
-        values (#{userId}, #{userFriend}, #{friendRequest}
+        values (#{userId}
         )
     </insert>
 
     <update id="updateFriendRequest" parameterType="com.jk.game.legend.model.UserFriend">
-        update user_friend set friendrequest = #{friendRequest}
-        where userid = #{userId}
+        update user_friend set friend_request = #{friendRequest}
+        where user_id = #{userId}
     </update>
 
 </mapper>

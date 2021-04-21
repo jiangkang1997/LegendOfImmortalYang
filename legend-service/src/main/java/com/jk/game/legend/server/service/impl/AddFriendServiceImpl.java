@@ -19,13 +19,10 @@ import javax.annotation.Resource;
 public class AddFriendServiceImpl implements AddFriendService {
 
     @Resource
-    private UserMapper userMapper;
-
-    @Resource
     private AddFriendMapper addFriendMapper;
 
     /**
-     * p1给p2发送好友请求
+     * p2给p1发送好友请求
      * @param userIdp1
      * @param userIdp2
      * @return
@@ -34,53 +31,62 @@ public class AddFriendServiceImpl implements AddFriendService {
     @Override
     public String getUserInfoByUserName(Integer userIdp1,Integer userIdp2) throws BusinessException {
         //通过玩家二的用户名在user表里查询是否存在
-        UserFriend userFriendp1 = addFriendMapper.getUserFriendById(userIdp1);
-        if (userFriendp1 != null){
+        UserFriend userFriendP1 = addFriendMapper.getUserFriendById(userIdp1);
+        if (userFriendP1 != null){
             //是否已经发送过请求或者已经是好友
-            if (userFriendp1.getFriendRequest().contains(String.valueOf(userIdp2))){
+            if (userFriendP1.getFriendRequest().contains(String.valueOf(userIdp2))){
                 throw new BusinessException("请等待对方审核");
-            }else if (userFriendp1.getUserFriend().contains(String.valueOf(userIdp2))){
+            }else if (userFriendP1.getAddedFriend().contains(String.valueOf(userIdp2))){
                 throw new BusinessException("对方已经是你的好友");
             }
             //好友请求列表为空
-            if ("0".equals(userFriendp1.getFriendRequest())){
+            if ("0".equals(userFriendP1.getFriendRequest())){
                 addFriendMapper.updateFriendRequest("" + userIdp2,userIdp1);
                 return "好友请求已发送";
             }
             //在user_friend表里添加新的好友请求
-            addFriendMapper.updateFriendRequest(userFriendp1.getFriendRequest() + "," + userIdp2,userIdp1);
+            addFriendMapper.updateFriendRequest(userFriendP1.getFriendRequest() + "," + userIdp2,userIdp1);
             return "好友请求已发送";
         }
         throw new BusinessException("该玩家不存在！");
     }
 
     @Override
-    public String seeMyFriendRequest(Integer userId) {
-        UserFriend userFriend = addFriendMapper.getUserFriendById(userId);
+    public String seeMyFriendRequest(Integer userId) throws BusinessException{
+        UserFriend userFriend=addFriendMapper.getUserFriendById(userId);
+        if ("0".equals(userFriend.getFriendRequest())){
+            throw new BusinessException("您没有好友请求");
+        }
         return userFriend.getFriendRequest();
     }
 
     @Override
     public void handleFriendRequest(boolean isAdd, Integer userIdp1,Integer userIdp2) {
         //获取p1的好友信息
-        UserFriend userFriendp1= addFriendMapper.getUserFriendById(userIdp1);
-        //更新p1的好友请求
+        UserFriend userFriendP1= addFriendMapper.getUserFriendById(userIdp1);
+        //更新p1的好友请求，不管同不同意，好友请求都要被处理
         //当好友请求只有一个时
-        if (userFriendp1.getFriendRequest().contains(String.valueOf(userIdp2))){
-            addFriendMapper.updateFriendRequest(userFriendp1.getFriendRequest().replace(String.valueOf(userIdp2), "0"),userIdp1);
+        if (userFriendP1.getFriendRequest().equals(String.valueOf(userIdp2))){
+
+            userFriendP1.setFriendRequest("0");
+            addFriendMapper.updateFriendRequest("0",userIdp1);
         }else{
-            addFriendMapper.updateFriendRequest(userFriendp1.getFriendRequest().replace(","+userIdp2, ""),userIdp1);
+
+            addFriendMapper.updateFriendRequest(userFriendP1.getFriendRequest().replace(","+userIdp2, ""),userIdp1);
         }
         if (isAdd){
             //同意请求
             //好友列表为空
-            if ("0".equals(userFriendp1.getUserFriend())){
-                addFriendMapper.addFriendByUserId(userIdp1,""+userIdp2);
+            if ("0".equals(userFriendP1.getAddedFriend())){
+
+                userFriendP1.setAddedFriend(String.valueOf(userIdp2));
+                addFriendMapper.addFriendByUserId(userIdp1,userFriendP1.getAddedFriend());
             }else {
                 //在p1玩家的好友列表加入p2
-                userFriendp1.setUserFriend(userFriendp1.getUserFriend()+","+userIdp2);
+
+                userFriendP1.setAddedFriend(userFriendP1.getAddedFriend()+","+userIdp2);
                 //通过p1玩家的Id修改p1的好友列表，更改数据库
-                addFriendMapper.addFriendByUserId(userIdp1,userFriendp1.getUserFriend());
+                addFriendMapper.addFriendByUserId(userIdp1,userFriendP1.getAddedFriend());
             }
         }
     }
